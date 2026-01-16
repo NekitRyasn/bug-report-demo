@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Баг-репорт</title>
+  <title>Баг-репорт — демо (AQA Java)</title>
 
   <style>
     * {
@@ -17,7 +17,7 @@
     }
 
     .container {
-      max-width: 760px;
+      max-width: 820px;
       margin: 40px auto;
       background: #ffffff;
       padding: 32px;
@@ -26,11 +26,11 @@
     }
 
     h1 {
-      margin: 0 0 4px 0;
+      margin: 0 0 6px 0;
     }
 
     .subtitle {
-      margin-bottom: 24px;
+      margin-bottom: 28px;
       color: #666;
       font-size: 14px;
     }
@@ -69,6 +69,11 @@
 
     .row .field {
       flex: 1;
+    }
+
+    .readonly {
+      background: #f3f4f6;
+      color: #555;
     }
 
     .submit-btn {
@@ -114,88 +119,117 @@
 
 <div class="container">
 
-  <h1>Создание отчёта об ошибке</h1>
+  <h1>Отчёт об ошибке</h1>
   <div class="subtitle">
-    Демонстрационная форма - пример баг-репорта для AQA Java
+    Демонстрационная форма баг-репорта (пример для AQA Java)
   </div>
 
   <form>
 
-    <div class="row">
-      <div class="field">
-        <label>Тип обращения</label>
-        <select>
-          <option>Ошибка</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label>Приоритет</label>
-        <select>
-          <option>Высокий</option>
-          <option>Средний</option>
-          <option>Низкий</option>
-        </select>
-      </div>
+    <!-- ID -->
+    <div class="field">
+      <label>ID</label>
+      <input type="text" value="BUG-101" class="readonly" readonly>
     </div>
 
+    <!-- Summary -->
     <div class="field">
-      <label>Краткое описание</label>
+      <label>Summary (Краткое описание)</label>
       <input type="text" value="Ошибка авторизации при вводе корректных данных">
     </div>
 
+    <!-- Description -->
     <div class="field">
-      <label>Окружение</label>
-      <input type="text" value="Windows 11, Google Chrome 143.0.7499.193">
+      <label>Description (Подробное описание проблемы)</label>
+      <textarea>
+При попытке авторизации с корректными учетными данными
+пользователь не может войти в систему.
+Ошибка воспроизводится стабильно.
+      </textarea>
     </div>
 
+    <!-- Steps -->
     <div class="field">
-      <label>Шаги для воспроизведения</label>
+      <label>Steps to Reproduce (Шаги воспроизведения)</label>
       <textarea>
 1. Открыть страницу авторизации
-2. Ввести корректный email
-3. Ввести корректный пароль
+2. Ввести валидный email
+3. Ввести валидный пароль
 4. Нажать кнопку «Войти»
       </textarea>
     </div>
 
+    <!-- Expected -->
     <div class="field">
-      <label>Ожидаемый результат</label>
+      <label>Expected Result (Ожидаемый результат)</label>
       <textarea>
 Пользователь успешно авторизуется
 и перенаправляется в личный кабинет
       </textarea>
     </div>
 
+    <!-- Actual -->
     <div class="field">
-      <label>Фактический результат</label>
+      <label>Actual Result (Фактический результат)</label>
       <textarea>
-Отображается сообщение «Неверные учетные данные»,
-авторизация не происходит
+Отображается сообщение «Неверные учетные данные».
+Авторизация не происходит.
       </textarea>
     </div>
 
+    <!-- Severity / Priority -->
+    <div class="row">
+      <div class="field">
+        <label>Severity (Критичность)</label>
+        <select>
+          <option>Blocker</option>
+          <option selected>Major</option>
+          <option>Minor</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Priority (Приоритет)</label>
+        <select>
+          <option selected>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Environment -->
     <div class="field">
-      <label>Вложения (скриншоты, логи)</label>
+      <label>Environment (Окружение)</label>
+      <input type="text"
+             value="Windows 10, Google Chrome 121, версия приложения 1.4.2, тестовое окружение">
+    </div>
+
+    <!-- Attachments -->
+    <div class="field">
+      <label>Attachments (Скриншоты, логи)</label>
       <input type="file" disabled>
+      <span class="hint">Заглушка — загрузка файлов не реализована</span>
     </div>
 
     <button type="button" class="submit-btn">
-      Отправить обращение
+      Создать баг-репорт (демо)
     </button>
 
   </form>
 
   <div class="qa-block">
-    <strong>Пример баг-репорта:</strong><br>
-    Шаги воспроизведения напрямую соответствуют тест-кейсам.
-    Возможна автоматизация с применением Selenium / Selenide,
-    Page Object и JUnit.
+    <strong>Пояснение для AQA Java:</strong><br>
+    Структура отчёта соответствует стандартному баг-репорту.
+    Поля Steps, Expected и Actual используются для построения тест-кейсов
+    и автоматизированных проверок (assertions).
+    Форма подходит для UI-автотестов на Java
+    с применением Selenium / Selenide и Page Object.
   </div>
 
   <div class="note">
-    Страница является демонстрационной. Серверная часть, отправка данных
-    и хранение обращений не реализованы.
+    Страница является демонстрационной. Серверная логика,
+    сохранение данных и загрузка вложений отсутствуют.
   </div>
 
 </div>
