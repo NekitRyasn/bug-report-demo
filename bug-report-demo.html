@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Баг-репорт</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f6f7f9;
+      color: #1a1a1a;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 32px;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      margin: 0 0 4px 0;
+    }
+
+    .subtitle {
+      margin-bottom: 24px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+      white-space: pre-line;
+    }
+
+    .row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .row .field {
+      flex: 1;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: #2f5bea;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .hint {
+      display: block;
+      font-size: 12px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .note {
+      margin-top: 24px;
+      font-size: 13px;
+      color: #555;
+      background: #f1f3f6;
+      padding: 12px;
+      border-radius: 4px;
+    }
+
+    .qa-block {
+      margin-top: 24px;
+      padding: 16px;
+      border-left: 4px solid #2f5bea;
+      background: #f8f9fc;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Создание отчёта об ошибке</h1>
+  <div class="subtitle">
+    Демонстрационная форма - пример баг-репорта для AQA Java
+  </div>
+
+  <form>
+
+    <div class="row">
+      <div class="field">
+        <label>Тип обращения</label>
+        <select>
+          <option>Ошибка</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Приоритет</label>
+        <select>
+          <option>Высокий</option>
+          <option>Средний</option>
+          <option>Низкий</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Краткое описание</label>
+      <input type="text" value="Ошибка авторизации при вводе корректных данных">
+    </div>
+
+    <div class="field">
+      <label>Окружение</label>
+      <input type="text" value="Windows 11, Google Chrome 143.0.7499.193">
+    </div>
+
+    <div class="field">
+      <label>Шаги для воспроизведения</label>
+      <textarea>
+1. Открыть страницу авторизации
+2. Ввести корректный email
+3. Ввести корректный пароль
+4. Нажать кнопку «Войти»
+      </textarea>
+    </div>
+
+    <div class="field">
+      <label>Ожидаемый результат</label>
+      <textarea>
+Пользователь успешно авторизуется
+и перенаправляется в личный кабинет
+      </textarea>
+    </div>
+
+    <div class="field">
+      <label>Фактический результат</label>
+      <textarea>
+Отображается сообщение «Неверные учетные данные»,
+авторизация не происходит
+      </textarea>
+    </div>
+
+    <div class="field">
+      <label>Вложения (скриншоты, логи)</label>
+      <input type="file" disabled>
+    </div>
+
+    <button type="button" class="submit-btn">
+      Отправить обращение
+    </button>
+
+  </form>
+
+  <div class="qa-block">
+    <strong>Пример баг-репорта:</strong><br>
+    Шаги воспроизведения напрямую соответствуют тест-кейсам.
+    Возможна автоматизация с применением Selenium / Selenide,
+    Page Object и JUnit.
+  </div>
+
+  <div class="note">
+    Страница является демонстрационной. Серверная часть, отправка данных
+    и хранение обращений не реализованы.
+  </div>
+
+</div>
+
+</body>
+</html>
