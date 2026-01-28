@@ -247,7 +247,18 @@ section {
 </section>
 
 <script>
-/* ---------- HERO TEXT ---------- */
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('beforeunload', () => {
+  window.scrollTo(0, 0);
+});
+
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+});
+
 const hero = document.getElementById('hero');
 ['Обо','мне'].forEach(word=>{
   const w=document.createElement('span');
@@ -265,15 +276,25 @@ const hero = document.getElementById('hero');
   hero.appendChild(w);
 });
 
-/* ---------- SHAPES ---------- */
-const space=document.getElementById('space');
-const shapes=[];
-for(let i=0;i<12;i++){
-  const s=document.createElement('div');
-  s.className='shape';
-  s.style.top=Math.random()*100+'%';
-  s.style.left=Math.random()*100+'%';
-  s.dataset.depth=Math.random()*600+200;
+const space = document.getElementById('space');
+const shapes = [];
+
+const totalHeight = document.body.scrollHeight;
+const SHAPES_COUNT = 24;
+
+for (let i = 0; i < SHAPES_COUNT; i++) {
+  const s = document.createElement('div');
+  s.className = 'shape';
+
+  const y = Math.random() * totalHeight;
+  const x = Math.random() * 100;
+
+  s.style.top = `${y}px`;
+  s.style.left = `${x}%`;
+
+  s.dataset.baseY = y;
+  s.dataset.depth = Math.random() * 800 + 200;
+
   space.appendChild(s);
   shapes.push(s);
 }
@@ -289,12 +310,20 @@ document.addEventListener('mousemove',e=>{
   });
 });
 
-addEventListener('scroll',()=>{
-  const sc=scrollY;
-  shapes.forEach((s,i)=>{
-    s.style.transform+=` rotateZ(${sc/10+i*12}deg)`;
+addEventListener('scroll', () => {
+  const sc = scrollY;
+
+  shapes.forEach((s, i) => {
+    const baseY = Number(s.dataset.baseY);
+    const depth = Number(s.dataset.depth);
+
+    s.style.transform = `
+      translate3d(0, ${-sc * depth / 1200}px, ${-depth}px)
+      rotateZ(${sc / 10 + i * 15}deg)
+    `;
   });
 });
+
 </script>
 
 </body>
