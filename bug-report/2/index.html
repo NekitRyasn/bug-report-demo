@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>BUG-102 - Стили не применяются в медленной сети.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --main:#57698a;
+  --bg:#0b0e14;
+  --glass:rgba(255,255,255,.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  background:radial-gradient(circle at top,#12182a,var(--bg));
+  color:#e8ecf5;
+  font-family:Inter,system-ui,sans-serif;
+}
+body{padding:120px 8vw}
+.header span{
+  font-size:12px;
+  letter-spacing:.14em;
+  color:var(--main);
+  text-transform:uppercase;
+}
+.header h1{
+  margin-top:12px;
+  font-size:clamp(30px,4vw,54px);
+}
+.card{
+  margin-top:50px;
+  max-width:820px;
+  background:var(--glass);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:28px;
+  padding:44px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 0 80px rgba(87,105,138,.18);
+}
+.row{margin-bottom:26px}
+.label{
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#aab3ff;
+  margin-bottom:6px;
+}
+.value{line-height:1.6}
+.badge{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:18px;
+  font-size:13px;
+  background:rgba(87,105,138,.18);
+  border:1px solid rgba(87,105,138,.4);
+  margin-right:10px;
+}
+.back{
+  display:inline-block;
+  margin-top:60px;
+  color:#cfd6ff;
+  text-decoration:none;
+  opacity:.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <span>Bug Report - BUG-102</span>
+  <h1>Стили не применяются в медленной сети.</h1>
+</div>
+
+<div class="card">
+  <div class="row">
+    <div class="label">ID</div>
+    <div class="value">BUG-102</div>
+  </div>
+
+  <div class="row">
+    <div class="label">Summary</div>
+    <div class="value">
+      CSS-стили не загружаются при медленном интернет-соединении.
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="label">Description</div>
+    <div class="value">
+      При низкой скорости сети или нестабильном соединении
+      CSS-файлы не успевают загрузиться. В результате страница
+      отображается без стилей (unstyled content) и не восстанавливается
+      даже после полной загрузки.
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="label">Steps to Reproduce</div>
+    <div class="value">
+      1. Включить ограничение сети (Slow 3G) в DevTools<br>
+      2. Обновить страницу приложения<br>
+      3. Дождаться полной загрузки
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="label">Expected Result</div>
+    <div class="value">
+      Стили должны примениться после завершения загрузки ресурсов.
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="label">Actual Result</div>
+    <div class="value">
+      Страница остаётся без CSS-оформления.
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="label">Severity / Priority</div>
+    <div class="value">
+      <span class="badge">Severity: Major</span>
+      <span class="badge">Priority: Medium</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="label">Environment</div>
+    <div class="value">
+      Android 15 - Chrome Mobile - Web App v0.7559.109
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="label">Attachments</div>
+    <div class="value">
+      report_console_log.txt, report.png
+    </div>
+  </div>
+</div>
+
+<a href="/" class="back">На Главную</a>
+
+</body>
+</html>

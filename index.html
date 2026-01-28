@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>About Me — Future Space</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --main: #57698a;
+  --bg: #0b0e14;
+  --glass: rgba(255,255,255,0.06);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  height: 100%;
+  background: radial-gradient(circle at top, #12182a, var(--bg));
+  color: #e8ecf5;
+  font-family: Inter, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+body { perspective: 1200px; }
+
+/* ---------- NAV ---------- */
+nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  background: var(--glass);
+  padding: 14px 30px;
+  border-radius: 40px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+nav a {
+  text-decoration: none;
+  color: #cfd6ff;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---------- SECTIONS ---------- */
+section {
+  min-height: 100vh;
+  padding: 140px 8vw;
+  position: relative;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  display: flex;
+  gap: 20px;
+}
+
+.word { position: relative; color: #e6e9ff; }
+
+.fragment {
+  position: absolute;
+  inset: 0;
+  color: var(--main);
+  opacity: 0;
+  filter: blur(1px);
+  transform: translate(var(--x), var(--y)) scale(0.4);
+  animation: assemble 1.6s ease forwards;
+}
+
+@keyframes assemble {
+  to { transform: translate(0,0) scale(1); opacity: 1; }
+}
+
+.float { animation: float 6s ease-in-out infinite; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ---------- PROFILE MODULE ---------- */
+.profile {
+  margin-top: 70px;
+  max-width: 760px;
+  display: grid;
+  gap: 26px;
+}
+
+.block {
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 26px;
+  padding: 32px 36px;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 0 80px rgba(87,105,138,0.15);
+}
+
+.block-title {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--main);
+  margin-bottom: 14px;
+}
+
+.block p {
+  line-height: 1.7;
+  color: #e6e9ff;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 13px;
+  background: rgba(87,105,138,0.18);
+  border: 1px solid rgba(87,105,138,0.4);
+}
+
+/* ---------- BUG LINKS ---------- */
+.bug-link {
+  display: block;
+  margin-top: 18px;
+  padding: 18px 22px;
+  border-radius: 18px;
+  text-decoration: none;
+  color: #e6e9ff;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: 0.3s ease;
+}
+
+.bug-link:hover {
+  background: rgba(87,105,138,0.18);
+  box-shadow: 0 0 40px rgba(87,105,138,0.25);
+  transform: translateY(-2px);
+}
+
+/* ---------- ABSTRACT SPACE ---------- */
+.space {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.shape {
+  position: absolute;
+  width: 140px;
+  height: 90px;
+  background: linear-gradient(135deg, var(--main), transparent);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 40px rgba(87,105,138,0.25);
+  transform-style: preserve-3d;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#home">Главная</a>
+  <a href="#bugs">Баг-репорты</a>
+</nav>
+
+<div class="space" id="space"></div>
+
+<!-- ---------- HOME ---------- -->
+<section id="home">
+  <div class="hero" id="hero"></div>
+
+  <div class="profile">
+
+    <div class="block">
+      <div class="block-title">Role</div>
+      <p>
+        Junior AQA Engineer с техническим образованием и системным подходом
+        к обеспечению качества программного обеспечения.
+      </p>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Tech Stack</div>
+      <div class="tags">
+        <div class="tag">Java</div>
+        <div class="tag">REST API</div>
+        <div class="tag">SQL</div>
+        <div class="tag">Postman</div>
+        <div class="tag">Git</div>
+        <div class="tag">Python</div>
+        <div class="tag">CI/CD</div>
+        <div class="tag">UI / API Testing</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Approach</div>
+      <p>
+        Понимаю жизненный цикл разработки (SDLC) и роль QA в Agile/Scrum.
+        Умею анализировать дефекты, формулировать структурированные баг-репорты,
+        выявлять причины проблем и оценивать их влияние на систему.
+      </p>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Experience & Growth</div>
+      <p>
+        Участник хакатонов (финал Белкарт и Peleng, 2024).
+        Постоянно развиваюсь в автоматизации тестирования,
+        углубляю инженерные навыки и практику взаимодействия с разработкой.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ---------- BUGS ---------- -->
+<section id="bugs">
+  <h2>Пример баг-репортов</h2>
+
+  <div class="block" style="max-width:640px;">
+    <p>Отдельные страницы с оформленными QA-баг-репортами:</p>
+
+    <a class="bug-link" href="/bug-report/1">
+      BUG-101 · Registration button not working
+    </a>
+
+    <a class="bug-link" href="/bug-report/2">
+      BUG-102 · Styles not loaded on slow network
+    </a>
+  </div>
+</section>
+
+<script>
+/* ---------- HERO TEXT ---------- */
+const hero = document.getElementById('hero');
+['Обо','мне'].forEach(word=>{
+  const w=document.createElement('span');
+  w.className='word float';
+  w.textContent=word;
+  for(let i=0;i<10;i++){
+    const f=document.createElement('span');
+    f.className='fragment';
+    f.textContent=word;
+    f.style.setProperty('--x',`${Math.random()*400-200}px`);
+    f.style.setProperty('--y',`${Math.random()*200-100}px`);
+    f.style.animationDelay=`${Math.random()*0.6}s`;
+    w.appendChild(f);
+  }
+  hero.appendChild(w);
+});
+
+/* ---------- SHAPES ---------- */
+const space=document.getElementById('space');
+const shapes=[];
+for(let i=0;i<12;i++){
+  const s=document.createElement('div');
+  s.className='shape';
+  s.style.top=Math.random()*100+'%';
+  s.style.left=Math.random()*100+'%';
+  s.dataset.depth=Math.random()*600+200;
+  space.appendChild(s);
+  shapes.push(s);
+}
+
+document.addEventListener('mousemove',e=>{
+  const x=(e.clientX/innerWidth-.5)*2;
+  const y=(e.clientY/innerHeight-.5)*2;
+  shapes.forEach(s=>{
+    const d=s.dataset.depth;
+    s.style.transform=
+      `translate3d(${x*d/30}px,${y*d/30}px,${-d}px)
+       rotateY(${x*20}deg) rotateX(${-y*20}deg)`;
+  });
+});
+
+addEventListener('scroll',()=>{
+  const sc=scrollY;
+  shapes.forEach((s,i)=>{
+    s.style.transform+=` rotateZ(${sc/10+i*12}deg)`;
+  });
+});
+</script>
+
+</body>
+</html>
